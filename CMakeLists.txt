@@ -3,6 +3,13 @@ project(OpenGLBase)
 
 set(CMAKE_CXX_STANDARD 23)
 include_directories(include)
+
+set( GLFW-CMAKE-STARTER-SRC
+        src/main.cpp
+        src/glad.c
+        src/Modules/FileLoader.h
+)
+
 if (MSVC)
     find_package( OpenGL REQUIRED )
     include_directories( ${OPENGL_INCLUDE_DIRS} )
@@ -16,15 +23,12 @@ if (MSVC)
         set( GLAD_GL "${GLFW_SOURCE_DIR}/deps/glad/gl.h" )
     endif()
     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
-    set( GLFW-CMAKE-STARTER-SRC
-            src/main.cpp
-            src/glad.c
-    )
+
 
     add_executable( OpenGLBase WIN32 ${GLFW-CMAKE-STARTER-SRC} ${GLAD_GL} )
     target_link_libraries( OpenGLBase ${OPENGL_LIBRARIES} glfw )
 elseif (UNIX)
-    add_executable(OpenGLBase src/main.cpp src/glad.c)
+    add_executable(OpenGLBase ${GLFW-CMAKE-STARTER-SRC})
     target_link_libraries(OpenGLBase glfw)
 endif ()
 
