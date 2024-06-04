@@ -1,5 +1,5 @@
 //
-// Created by schreibmaschine on 22.04.24.
+// Created by KDen404 on 22.04.24.
 //
 
 #ifndef OPENGLBASE_TRIANGLE_H
@@ -21,6 +21,15 @@ public:
             {
                 v1,v2,v3
             }) {};
+    Triangle(Vertex v1, Vertex v2, Vertex v3) :
+            m_Vertices(
+                    {
+                            v1,v2,v3
+                    }) {};
+    Triangle(float* v) : m_Vertices({
+            Vertex(v[0],v[1],v[2]),
+            Vertex(v[3],v[4],v[5]),
+            Vertex(v[6],v[7],v[8])}) {};
     ~Triangle() = default;
 
     inline std::array<Vertex,3> getVertices()

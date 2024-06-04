@@ -1,5 +1,5 @@
 //
-// Created by schreibmaschine on 04.04.24.
+// Created by KDen404 on 04.04.24.
 //
 
 #ifndef OPENGLBASE_FILELOADER_H

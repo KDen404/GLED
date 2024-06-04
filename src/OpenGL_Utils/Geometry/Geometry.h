@@ -1,5 +1,5 @@
 //
-// Created by schreibmaschine on 22.04.24.
+// Created by KDen404 on 22.04.24.
 //
 
 #ifndef OPENGLBASE_GEOMETRY_H
@@ -11,7 +11,8 @@ class Geometry {
 public:
     Geometry();
     Geometry(Mesh* mesh);
-    ~Geometry();
+    ~Geometry();        //TODO: DO SHIT
+
     void Draw();
     inline void SetRGBA(
             float r,

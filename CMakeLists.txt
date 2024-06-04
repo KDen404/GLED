@@ -18,6 +18,7 @@ set( GLFW-CMAKE-STARTER-SRC
         src/OpenGL_Utils/OpenGL_Main.h
         src/OpenGL_Utils/OpenGL_Main.cpp
         src/OpenGL_Utils/ObjectManager.h
+        src/Modules/BasicInputManager.h
 )
 
 if (MSVC)
@@ -31,7 +32,10 @@ if (MSVC)
     if( GLFW-CMAKE-STARTER-USE-GLFW-GLAD )
         include_directories("${GLFW_SOURCE_DIR}/deps")
         set( GLAD_GL "${GLFW_SOURCE_DIR}/deps/glad/gl.h"
-                src/OpenGL_Utils/Object.h)
+                src/OpenGL_Utils/Object.h
+                src/Modules/BasicInputManager.cpp
+                src/Modules/BasicInputManager.h
+                src/UtilityScripts/UtilityScripts.cpp)
 
     endif()
     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )

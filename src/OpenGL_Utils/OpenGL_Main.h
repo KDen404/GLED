@@ -1,5 +1,5 @@
 //
-// Created by schreibmaschine on 15.05.24.
+// Created by KDen404 on 15.05.24.
 //
 
 #ifndef OPENGLBASE_OPENGL_MAIN_H
@@ -12,13 +12,14 @@
 #include <vector>
 
 #include "../Modules/FileLoader.h"
+#include "../OpenGL_Utils/ObjectManager.h"
 
 class OpenGL_Main {
 public:
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
     static void processInput(GLFWwindow *window);
 
-    bool WIREFRAMEMODE = false;
+    bool WIREFRAMEMODE = true;
 public:
     OpenGL_Main();
     ~OpenGL_Main();
@@ -43,6 +44,8 @@ private: // GLFW "Global" variablen
 private: //glfw encapsulated for further understanding
     void reloadShaderProgram();
     std::vector<float> LoadVerticesFromObjects();
+    std::vector<float> VerticeVectorBuffer;
+    ObjectManager m_ObjectManager = ObjectManager();
 };
 
 #endif //OPENGLBASE_OPENGL_MAIN_H

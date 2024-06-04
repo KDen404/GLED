@@ -1,5 +1,5 @@
 //
-// Created by schreibmaschine on 24.05.24.
+// Created by KDen404 on 24.05.24.
 //
 
 #ifndef OPENGLBASE_OBJECT_H
@@ -8,8 +8,74 @@
 #include "Geometry/Triangle.h"
 
 class Object {
+private:
+    Mesh test_cube_mesh = Mesh(
+            {
+                    Triangle(
+                            Vertex(-0.25f,-0.25f,-0.25f),
+                            Vertex(-0.25f,-0.25f, 0.25f),
+                            Vertex(-0.25f, 0.25f, 0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f, 0.25f,-0.25f),
+                            Vertex(-0.25f,-0.25f,-0.25f),
+                            Vertex(-0.25f, 0.25f,-0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f,-0.25f, 0.25f),
+                            Vertex(-0.25f,-0.25f,-0.25f),
+                            Vertex(0.25f,-0.25f,-0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f, 0.25f,-0.25f),
+                            Vertex(0.25f,-0.25f,-0.25f),
+                            Vertex(-0.25f,-0.25f,-0.25f)),
+
+                    Triangle(
+                            Vertex(-0.25f,-0.25f,-0.25f),
+                            Vertex(-0.25f, 0.25f, 0.25f),
+                            Vertex(-0.25f, 0.25f,-0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f,-0.25f, 0.25f),
+                            Vertex(-0.25f,-0.25f, 0.25f),
+                            Vertex(-0.25f,-0.25f,-0.25f)),
+
+                    Triangle(
+                            Vertex(-0.25f, 0.25f, 0.25f),
+                            Vertex(-0.25f,-0.25f, 0.25f),
+                            Vertex(0.25f,-0.25f, 0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f, 0.25f, 0.25f),
+                            Vertex(0.25f,-0.25f,-0.25f),
+                            Vertex(0.25f, 0.25f,-0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f,-0.25f,-0.25f),
+                            Vertex(0.25f, 0.25f, 0.25f),
+                            Vertex(0.25f,-0.25f, 0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f, 0.25f, 0.25f),
+                            Vertex(0.25f, 0.25f,-0.25f),
+                            Vertex(-0.25f, 0.25f,-0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f, 0.25f, 0.25f),
+                            Vertex(-0.25f, 0.25f,-0.25f),
+                            Vertex(-0.25f, 0.25f, 0.25f)),
+
+                    Triangle(
+                            Vertex(0.25f, 0.25f, 0.25f),
+                            Vertex(-0.25f, 0.25f, 0.25f),
+                            Vertex(0.25f,-0.25f, 0.25f))
+
+
+            });
+
 public:
-    inline Object() : m_Mesh(Mesh()) {};
+    inline Object() : m_Mesh(test_cube_mesh){};
     inline ~Object() = default;
 
     inline Mesh getMesh()

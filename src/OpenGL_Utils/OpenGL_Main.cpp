@@ -1,15 +1,19 @@
 //
-// Created by schreibmaschine on 15.05.24.
+// Created by KDen404 on 15.05.24.
 //
 
 #include "OpenGL_Main.h"
 #include "../OpenGL_Utils/Geometry/Vertex.h"
 #include "../OpenGL_Utils/ObjectManager.h"
+#include "../Modules/BasicInputManager.h"
 
-bool HELLO_TRIANGLE = true;
+bool HELLO_TRIANGLE = false;
 
 OpenGL_Main::OpenGL_Main() {
     ObjectManager();
+    BasicInputManager();
+    BasicInputManager::setGLFWWindow(window);
+
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
@@ -20,7 +24,7 @@ void OpenGL_Main::processInput(GLFWwindow *window)
         glfwSetWindowShouldClose(window, true);
 }
 
-// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+// glfw: whenever the window size changed (by OS or user resize) this cfallback function executes
 // ---------------------------------------------------------------------------------------------
 void OpenGL_Main::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -81,7 +85,7 @@ int OpenGL_Main::init() {
 
 
 
-    std::vector<float> VerticeVectorBuffer = LoadVerticesFromObjects();
+    VerticeVectorBuffer = LoadVerticesFromObjects();
 
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -96,9 +100,14 @@ int OpenGL_Main::init() {
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(typeof(VerticeVectorBuffer.data()[0])), VerticeVectorBuffer.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(VerticeVectorBuffer.size() * sizeof(typeof(VerticeVectorBuffer[0]))), VerticeVectorBuffer.data(), GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3 , GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0,
+                          3 ,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          sizeof(VerticeVectorBuffer[0]) * 3,
+                          0);
     glEnableVertexAttribArray(0);
 
     // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
@@ -178,7 +187,7 @@ void OpenGL_Main::loop() {
 
         // draw our first triangle
         glUseProgram(shaderProgram);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, VerticeVectorBuffer.size()/3.f);
         // glBindVertexArray(0); // no need to unbind it every time
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -202,32 +211,19 @@ OpenGL_Main::~OpenGL_Main() {
 
 std::vector<float> OpenGL_Main::LoadVerticesFromObjects() {
     std::vector<float> vertices;
-    if (HELLO_TRIANGLE)
+    auto ObjectList_shared_ptr = m_ObjectManager.getObjectList();
+    for (auto object : *ObjectList_shared_ptr)
     {
-        vertices = {
-                -0.5f, -0.5f, 0.0f, // left
-                0.5f, -0.5f, 0.0f, // right
-                0.0f,  0.5f, 0.0f  // top
-        };
-    }
-    else
-    {
-        //craft vertice list from objects
-        auto ObjectList_shared_ptr = ObjectManager::getObjectList();
-        for (auto object : *ObjectList_shared_ptr) // TODO WRITE OBJECT MANAGER
+        for (Triangle triangle : object->getMesh().m_Triangles)
         {
-            for (auto triangle : object.getMesh().m_Triangles)
+            for (Vertex vertex : triangle.getVertices())
             {
-                for (Vertex vertex : triangle.getVertices())
-                {
-                    vertices.push_back(vertex.X);
-                    vertices.push_back(vertex.Y);
-                    vertices.push_back(vertex.Z);
-                }
+                vertices.push_back(vertex.X);
+                vertices.push_back(vertex.Y);
+                vertices.push_back(vertex.Z);
+                std::cout << vertex.X << " " << vertex.Y << " " << vertex.Z << std::endl;
             }
         }
-
     }
-
     return vertices;
 }

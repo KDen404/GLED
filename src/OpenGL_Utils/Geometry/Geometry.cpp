@@ -1,5 +1,5 @@
 //
-// Created by schreibmaschine on 22.04.24.
+// Created by KDen404 on 22.04.24.
 //
 
 #include "Geometry.h"

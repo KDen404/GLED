@@ -1,5 +1,5 @@
 //
-// Created by schreibmaschine on 24.05.24.
+// Created by KDen404 on 24.05.24.
 //
 
 #ifndef OPENGLBASE_OBJECTMANAGER_H
@@ -16,19 +16,19 @@ class ObjectManager {
 public:
     ObjectManager()
     {
-        m_ObjectList.push_back(Object());
+        m_ObjectList.push_back(new Object());
     };
     ~ObjectManager() = default;
     //static void addObject();
     //static void purgeObject();
-    inline static shared_ptr<vector<Object>> getObjectList()
+    inline shared_ptr<vector<Object*>> getObjectList()
     {
-        return make_shared<vector<Object>>(m_ObjectList);
+        return make_shared<vector<Object*>>(m_ObjectList);
     }
     //static void updateObjects();
 
 private:
-    inline static vector<Object> m_ObjectList = {};
+    vector<Object*> m_ObjectList = {};
 
 };
 
