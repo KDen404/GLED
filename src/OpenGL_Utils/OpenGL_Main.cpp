@@ -221,7 +221,6 @@ std::vector<float> OpenGL_Main::LoadVerticesFromObjects() {
                 vertices.push_back(vertex.X);
                 vertices.push_back(vertex.Y);
                 vertices.push_back(vertex.Z);
-                std::cout << vertex.X << " " << vertex.Y << " " << vertex.Z << std::endl;
             }
         }
     }

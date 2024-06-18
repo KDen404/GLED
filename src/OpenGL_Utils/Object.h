@@ -6,6 +6,7 @@
 #define OPENGLBASE_OBJECT_H
 #include "Geometry/Mesh.h"
 #include "Geometry/Triangle.h"
+#include "Geometry/Utility/vectors.h"
 
 class Object {
 private:
@@ -76,11 +77,24 @@ private:
 
 public:
     inline Object() : m_Mesh(test_cube_mesh){};
+    inline Object(Mesh mesh) : m_Mesh(mesh){};
     inline ~Object() = default;
 
     inline Mesh getMesh()
     {
         return m_Mesh;
+    };
+
+    inline void setMesh(Mesh mesh)
+    {
+        m_Mesh = mesh;
+    };
+
+    inline void setGlobalPosition(Vector3 position)
+    {
+        m_xGlobalPosition = position.get_X();
+        m_yGlobalPosition = position.get_Y();
+        m_zGlobalPosition = position.get_Z();
     };
 
 private:

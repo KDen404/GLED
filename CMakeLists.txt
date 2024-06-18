@@ -35,7 +35,8 @@ if (MSVC)
                 src/OpenGL_Utils/Object.h
                 src/Modules/BasicInputManager.cpp
                 src/Modules/BasicInputManager.h
-                src/UtilityScripts/UtilityScripts.cpp)
+                src/UtilityScripts/UtilityScripts.cpp
+                src/OpenGL_Utils/Geometry/Utility/vectors.h)
 
     endif()
     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
