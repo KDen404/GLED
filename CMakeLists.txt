@@ -19,7 +19,12 @@ set( GLFW-CMAKE-STARTER-SRC
         src/OpenGL_Utils/OpenGL_Main.cpp
         src/OpenGL_Utils/ObjectManager.h
         src/Modules/BasicInputManager.h
+        src/Modules/ObjectLoader.h
 )
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/deps/FBXImport)
+
+
 
 if (MSVC)
     find_package( OpenGL REQUIRED )
@@ -36,17 +41,22 @@ if (MSVC)
                 src/Modules/BasicInputManager.cpp
                 src/Modules/BasicInputManager.h
                 src/UtilityScripts/UtilityScripts.cpp
-                src/OpenGL_Utils/Geometry/Utility/vectors.h)
+                src/OpenGL_Utils/Geometry/Utility/vectors.h
+                src/Modules/FBXLoader.h
+                src/Modules/ObjectLoaders/FBXLoader.h)
 
     endif()
     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
 
 
     add_executable( OpenGLBase WIN32 ${GLFW-CMAKE-STARTER-SRC} ${GLAD_GL} )
-    target_link_libraries( OpenGLBase ${OPENGL_LIBRARIES} glfw )
 elseif (UNIX)
-    add_executable(OpenGLBase ${GLFW-CMAKE-STARTER-SRC})
-    target_link_libraries(OpenGLBase glfw)
+    add_executable(OpenGLBase ${GLFW-CMAKE-STARTER-SRC} ${GLAD_GL})
+
 endif ()
 
+target_link_libraries(OpenGLBase ${OPENGL_LIBRARIES} glfw FBXImport)
+
+
+target_include_directories(OpenGLBase PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/FBXImport/importer/include)
 
