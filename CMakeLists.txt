@@ -14,7 +14,7 @@ set(GLFW-CMAKE-STARTER-SRC ${ALL_SRC})
 # Add the subdirectory containing OpenFBX
 add_subdirectory(deps/OpenFBX_libedeflate_CMAKE_FetchContent)
 
-if (MSVC)
+if (WIN32)
     find_package(OpenGL REQUIRED)
     include_directories(${OPENGL_INCLUDE_DIRS})
     set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW lib only")
@@ -28,10 +28,14 @@ if (MSVC)
         set(GLAD_GL "${GLFW_SOURCE_DIR}/deps/glad/gl.h")
     endif()
 
-    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup")
+    if (MSVC)
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup")
+    else ()
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
+    endif ()
 
     add_executable(OpenGLBase WIN32 ${GLFW-CMAKE-STARTER-SRC} ${GLAD_GL})
-elseif (UNIX)
+else ()
     add_executable(OpenGLBase ${GLFW-CMAKE-STARTER-SRC} ${GLAD_GL})
 endif ()
 
