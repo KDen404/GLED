@@ -100,7 +100,7 @@ int OpenGL_Main::init() {
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(VerticeVectorBuffer.size() * sizeof(typeof(VerticeVectorBuffer[0]))), VerticeVectorBuffer.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(VerticeVectorBuffer.size() * sizeof(VerticeVectorBuffer[0])), VerticeVectorBuffer.data(), GL_STATIC_DRAW);
 
     glVertexAttribPointer(0,
                           3 ,

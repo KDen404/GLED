@@ -5,6 +5,7 @@
 #ifndef OPENGLBASE_TRIANGLE_H
 #define OPENGLBASE_TRIANGLE_H
 #include "Vertex.h"
+#include <array>
 
 class Triangle {
 public:

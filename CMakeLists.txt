@@ -5,29 +5,10 @@ set(CMAKE_CXX_STANDARD 23)
 
 include_directories(include)
 
-set(GLFW-CMAKE-STARTER-SRC
-        src/main.cpp
-        src/glad.c
-        src/Modules/FileLoader.h
-        src/OpenGL_Utils/Geometry/Texture.h
-        src/OpenGL_Utils/Geometry/Geometry.cpp
-        src/OpenGL_Utils/Geometry/Geometry.h
-        src/OpenGL_Utils/Geometry/Mesh.h
-        src/OpenGL_Utils/Geometry/Triangle.h
-        src/OpenGL_Utils/Geometry/Vertex.h
-        src/OpenGL_Utils/OpenGL_Main.cpp
-        src/OpenGL_Utils/OpenGL_Main.h
-        src/OpenGL_Utils/OpenGL_Main.cpp
-        src/OpenGL_Utils/ObjectManager.h
-        src/Modules/BasicInputManager.h
-        src/Modules/BasicObjectLoader.h
-        src/Modules/BasicInputManager.cpp
-        src/UtilityScripts/UtilityScripts.cpp
-        src/OpenGL_Utils/Geometry/Utility/vectors.h
-        src/Modules/FBXLoader.h
-        src/Modules/ObjectLoaders/FBXLoader.h
-)
 
+file(GLOB_RECURSE ALL_SRC src/*.cpp src/*.h src/*.c)
+
+set(GLFW-CMAKE-STARTER-SRC ${ALL_SRC})
 
 
 # Add the subdirectory containing OpenFBX
