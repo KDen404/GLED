@@ -4,14 +4,19 @@
 
 #ifndef OPENGLBASE_FBXLOADER_H
 #define OPENGLBASE_FBXLOADER_H
-#include "../ObjectLoader.h"
+#include "../BasicObjectLoader.h"
 #include "../../OpenGL_Utils/Geometry/Mesh.h"
-class FBXLoader {
-    FBXLoader() = delete;
+#include "../../../deps/FBXImport/importer/include/FBX/FBXImport.h"
+#include "../../../deps/FBXImport/importer/include/FBX/TriangulateProcess.h"
+
+class FBXLoader : public BasicObjectLoader {
+    FBXLoader() = default;
 public:
     virtual Object loadObject(const char *path) override
     {
-        return Object(Triangle());
+        const auto &result = FBX::importFile(path, std::set<FBX::Process*>{new FBX::TriangulateProcess()});
+
+        return Object(Mesh());
     }
 };
 
