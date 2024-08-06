@@ -1,6 +1,6 @@
 [submodule "deps/glfw"]
 	path = deps/glfw
 	url = https://github.com/glfw/glfw
-[submodule "deps/OpenFBX_libedeflate_CMAKE_FetchContent"]
-	path = deps/OpenFBX_libedeflate_CMAKE_FetchContent
-	url = https://github.com/KDen404/OpenFBX_libedeflate_CMAKE_FetchContent
+[submodule "deps/OpenFBX"]
+	path = deps/OpenFBX
+	url = https://github.com/nem0/OpenFBX.git

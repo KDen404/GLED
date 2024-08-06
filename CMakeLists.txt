@@ -13,7 +13,7 @@ set(GLFW-CMAKE-STARTER-SRC ${ALL_SRC})
 
 # Add the subdirectory containing OpenFBX
 add_subdirectory(deps/OpenFBX_libedeflate_CMAKE_FetchContent)
-
+ add
 if (WIN32)
     find_package(OpenGL REQUIRED)
     include_directories(${OPENGL_INCLUDE_DIRS})
