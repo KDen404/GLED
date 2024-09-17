@@ -13,5 +13,5 @@ although malicious use is forbidden. White Hat use is allowed, therefore if you 
 If your application is not intended of murdering or harming people intentionally (i.e. weapon systems interfaces, ransomware) you are most likely good to go.
 
 
-If you use my code or the project in your application you agree that i may not sue me because of code written in this repository.
-If your application how ever harms another person i am not responsible. You are responsible for your own causes.
+If you use my code or the project in your application you agree that i may not be sued because of code written in this repository. 
+If your application that uses parts or my entire code base harms another person, animal or any infrastructure in public or private domain i am not responsible. You are responsible for your own causes.
